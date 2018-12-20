@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1 id="name"> {{name}} </h1>
+</body>
+<script type="text/javascript" src="./observe-test.js"></script>
+<script type="text/javascript">
+	console.log(name);
+	var e = document.querySelector("#name");
+
+	var a = new MyVue({
+		name: 'hello'
+	}, e, 'name');
+
+</script>
+</html>
