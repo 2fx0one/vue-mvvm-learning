@@ -27,7 +27,9 @@ Observer.prototype = {
 			configurable: false,
 			get: function() {
 				console.log('value get = ', val);
-				dep.addSub(Dep.target)
+        if (Dep.target) {
+          dep.addSub(Dep.target);
+        }
 				return val;
 			},
 			set: function(newVal) {
@@ -38,31 +40,7 @@ Observer.prototype = {
 			}
 		})
 	}
-}
-
-
-
-function defindReactive(data, key, val) {
-	var dep = new Dep();
-	observe(val); //监听子属性
-	Object.defineProperty(data, key, {
-		enumerable: true,
-		configurable: false,
-		get: function() {
-			console.log('value get = ', val);
-			if (!Dep.target) {
-			  dep.addSub(Dep.target)
-      }
-			return val;
-		},
-		set: function(newVal) {
-			if (val === newVal) return;
-			console.log('value change to new = ', newVal);
-			val = newVal;
-			dep.notify();
-		}
-	})
-}
+};
 
 // var data = {name: 'kelvin'};
 
