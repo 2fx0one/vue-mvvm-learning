@@ -1,22 +1,24 @@
-function MyVue(data, el, exp) {
+function MyVue(option) {
   var self = this;
-  this.data = data;
+  this.data = option.data;
 
-  Object.keys(data).forEach(function(key){
+  Object.keys(this.data).forEach(function(key){
     self.proxyKeys(key);
   })
 
+var el = document.querySelector(option.el);
 
-  el.innerHTML = this.data[exp]; //初始化模板数据
+  el.innerHTML = this.data[option.exp]; //初始化模板数据
 
   //监听数据
-  observe(data);
+  observe(this.data);
 
-  new Watcher(this, exp, function(value){
+  new Watcher(this, option.exp, function(value){
     el.innerHTML = value;
   });
   return this;
 }
+
 MyVue.prototype = {
   proxyKeys: function(key) {
     var self = this;
@@ -29,8 +31,7 @@ MyVue.prototype = {
       set: function proxySetter(newVal) {
         self.data[key] = newVal;
       }
-
-    })
+    });
   }
 }
 

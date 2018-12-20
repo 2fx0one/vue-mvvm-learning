@@ -27,7 +27,7 @@ Observer.prototype = {
       get: function() {
         console.log('value get = ', val);
         if (Dep.target) {
-          dep.addSub(Dep.target);
+          dep.addSub(Dep.target); //watcher
         }
         return val;
       },
@@ -56,4 +56,4 @@ Dep.prototype = {
     });
   }
 }
-Dep.target = null;
+Dep.target = null; //指向订阅者 waticher

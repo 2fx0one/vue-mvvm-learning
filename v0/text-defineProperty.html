@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>测试数据劫持</title>
+</head>
+<body>
+	<h1 id='title'></h1>
+</body>
+<script type="text/javascript">
+	function Observer(data, view) {
+		var self = this;
+		this.view = view;
+		Object.keys(data).forEach(function(key){
+			self.defineReactive(data, key, data[key])
+		});
+	}
+	Observer.prototype = {
+		defineReactive: function(data, key, val) {
+			var self = this;
+			Object.defineProperty(data, key, {
+				get: function() {
+					console.log('劫持get方法 ', val);
+					return val;
+				},
+				set: function(newVal) {
+					console.log('劫持set方法', newVal);
+					if (val === newVal) return;
+					val = newVal;
+					// var view = document.querySelector('#title');
+					self.view.innerHTML = newVal;
+				}
+			});
+		}	
+	}
+
+	var view = document.querySelector('#title');;
+	var model = {name: 'xxx'};
+	new Observer(model, view);
+
+
+</script>
+</html>

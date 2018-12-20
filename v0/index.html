@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<meta charset="utf-8"> 
+	<title>v0</title>
 </head>
 <body>
-	<h1 id="name"> {{name}} </h1>
+	<h1 id="app"> {{name}} </h1>
 </body>
 <script type="text/javascript" src="my-vue.js"></script>
 <script type="text/javascript">
-	console.log(name);
-	var e = document.querySelector("#name");
 
 	var a = new MyVue({
-		name: 'hello'
-	}, e, 'name');
+		el: '#app',
+		exp: 'name',
+		data: {
+			name: 'hello'
+		}
+	});
 
 </script>
 </html>

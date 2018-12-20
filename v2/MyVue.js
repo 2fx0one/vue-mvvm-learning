@@ -13,7 +13,7 @@ function MyVue(option) {
   observe(this.data);
 
   //用编译器动态绑定节点
-  new Compile(option.el, this.vm);
+  new Compile(option.el, this);
 
   // el.innerHTML = this.data[exp]; //初始化模板数据
 

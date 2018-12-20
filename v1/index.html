@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<meta charset="utf-8"> 
+	<title>v1</title>
 </head>
 <body>
 	<h1 id="name"> {{name}} </h1>
@@ -11,11 +12,19 @@
 <script type="text/javascript" src="MyVue.js"></script>
 <script type="text/javascript">
 	console.log(name);
-	var e = document.querySelector("#name");
+	// var e = document.querySelector("#name");
+
+	// var a = new MyVue({
+	// 	name: 'hello'
+	// }, e, 'name');
 
 	var a = new MyVue({
-		name: 'hello'
-	}, e, 'name');
+		el:'#name',
+		data: {
+			name: 'kelvin....'
+		},
+		exp: 'name'
+	});
 
 </script>
 </html>
