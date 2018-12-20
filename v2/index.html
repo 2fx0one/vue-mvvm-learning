@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<h2>{{title}}</h2>
+		<h2>{{name}}</h2>
+	</div>
+</body>
+<script type="text/javascript" src="Observe.js"></script>
+<script type="text/javascript" src="Watcher.js"></script>
+<script type="text/javascript" src="Compile.js"></script>
+<script type="text/javascript" src="MyVue.js"></script>
+<script type="text/javascript">
+
+	var a = new MyVue({
+		el:'#app',
+		data: {
+		 title: 'hello vue ',
+			name: 'kelvin'
+		}
+	});
+
+</script>
+</html>

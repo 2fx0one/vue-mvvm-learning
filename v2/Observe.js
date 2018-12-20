@@ -1,0 +1,59 @@
+function observe(data) {
+  if (!data || typeof data !== 'object' ) {
+    return;
+  }
+  return new Observer(data);
+}
+
+function Observer(data) {
+  this.data = data;
+  this.walk(data);
+}
+
+Observer.prototype = {
+  walk: function(data) {
+    var self = this;
+    Object.keys(data).forEach(function(key){
+      self.defineReactive(data, key, data[key]);
+    })
+  },
+
+  defineReactive:function (data, key, val) {
+    var dep = new Dep();
+    observe(val); //监听子属性
+    Object.defineProperty(data, key, {
+      enumerable: true,
+      configurable: false,
+      get: function() {
+        console.log('value get = ', val);
+        if (Dep.target) {
+          dep.addSub(Dep.target);
+        }
+        return val;
+      },
+      set: function(newVal) {
+        if (val === newVal) return;
+        console.log('value change to new = ', newVal);
+        val = newVal;
+        dep.notify();
+      }
+    })
+  }
+};
+
+// 订阅器 收集所有订阅者
+function Dep() {
+  this.subs = [];
+}
+Dep.prototype = {
+  addSub: function(sub) {
+    this.subs.push(sub);
+  },
+  notify: function() {
+    console.log(this.subs);
+    this.subs.forEach(function(sub){
+      sub.update();
+    });
+  }
+}
+Dep.target = null;
