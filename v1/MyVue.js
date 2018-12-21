@@ -14,6 +14,9 @@ var el = document.querySelector(option.el);
   observe(this.data);
 
   new Watcher(this, option.exp, function(value){
+    // console.log(arguments);
+    // console.log(value);
+    // console.log(oldVal);
     el.innerHTML = value;
   });
   return this;
