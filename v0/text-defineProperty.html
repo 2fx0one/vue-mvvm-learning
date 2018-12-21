@@ -13,9 +13,11 @@
   function Observer(data, view) {
     this.view = view;
     var reg = /\{\{(.*)\}\}/;
-    this.exp = reg.exec(this.view.innerHTML)[1];
+    //获取关键字
+    // this.exp = reg.exec(this.view.innerHTML)[1];
     //设定初始值
-    this.view.innerHTML = this.view.innerHTML.replace('{{' + this.exp + '}}', data[this.exp])
+    this.view.innerHTML = data.name;
+    // this.view.innerHTML = this.view.innerHTML.replace('{{' + this.exp + '}}', data[this.exp])
 
     Object.keys(data).forEach((key) => this.defineReactive(data, key, data[key]));
   }
@@ -32,7 +34,8 @@
           if (val === newVal) return;
           val = newVal;
           // this.view.innerHTML = newVal;
-          this.view.innerHTML = this.view.innerHTML.replace('{{' + this.exp + '}}', newVal);
+          // this.view.innerHTML = this.view.innerHTML.replace('{{' + this.exp + '}}', newVal);
+          this.view.innerHTML = newVal;
         }
       });
     }
