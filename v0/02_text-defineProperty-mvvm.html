@@ -6,19 +6,16 @@
 </head>
 <body>
 <div id='app'>
-  <h1>{{name}}</h1>
 </div>
 </body>
 <script type="text/javascript">
   function Observer(data, view) {
+    //view
     this.view = view;
-    var reg = /\{\{(.*)\}\}/;
-    //获取关键字
-    // this.exp = reg.exec(this.view.innerHTML)[1];
     //设定初始值
     this.view.innerHTML = data.name;
-    // this.view.innerHTML = this.view.innerHTML.replace('{{' + this.exp + '}}', data[this.exp])
 
+    //数据劫持
     Object.keys(data).forEach((key) => this.defineReactive(data, key, data[key]));
   }
 
@@ -26,25 +23,24 @@
     defineReactive: function (data, key, val) {
       Object.defineProperty(data, key, {
         get: () => {
-          console.log('劫持get方法 ', val);
+          console.log('劫持[GET]方法 ', val);
           return val;
         },
         set: (newVal) => {
-          console.log('劫持set方法', newVal);
+          console.log('劫持[SET]方法', newVal);
           if (val === newVal) return;
           val = newVal;
-          // this.view.innerHTML = newVal;
-          // this.view.innerHTML = this.view.innerHTML.replace('{{' + this.exp + '}}', newVal);
           this.view.innerHTML = newVal;
         }
       });
     }
   }
 
-  var view = document.querySelector('#app');
-  ;
-  var model = {name: 'xxx'};
-  new Observer(model, view);
+  var v = document.querySelector('#app');
+
+  var m = {name: 'xxx'};
+  //数据双向绑定
+  new Observer(m, v);
 
 
 </script>

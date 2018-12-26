@@ -25,7 +25,7 @@ Observer.prototype = {
       enumerable: true,
       configurable: false,
       get: function() {
-        console.log('value get = ', val);
+        console.log('劫持[GET]方法 ', val);
         if (Dep.target) {
           dep.addSub(Dep.target); //watcher
         }
@@ -33,7 +33,7 @@ Observer.prototype = {
       },
       set: function(newVal) {
         if (val === newVal) return;
-        console.log('value change to new = ', newVal);
+        console.log('劫持[SET]方法', newVal);
         val = newVal;
         dep.notify();
       }
