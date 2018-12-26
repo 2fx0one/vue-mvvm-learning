@@ -1,16 +1,15 @@
-
+//监听入口函数
 function observe(data) {
 	if (!data || typeof data !== 'object' ) {
 		return;
 	}
 	return new Observer(data);
 }
-
+//监听器
 function Observer(data) {
 	this.data = data;
 	this.walk(data);
 }
-
 Observer.prototype = {
 	walk: function(data) {
 		var self = this;
@@ -42,13 +41,10 @@ Observer.prototype = {
 	}
 };
 
-// var data = {name: 'kelvin'};
 
-// observe(data);
-
-// 订阅器 收集所有订阅者
+// 订阅器 收集所有 订阅者
 function Dep() {
-	this.subs = [];
+	this.subs = []; // Array<Watcher>
 }
 Dep.prototype = {
 	addSub: function(sub) {
@@ -63,13 +59,13 @@ Dep.prototype = {
 }
 Dep.target = null;
 
+//Watcher 订阅者
 function Watcher(vm, exp, cb) {
 	this.vm = vm;
 	this.exp = exp;
 	this.cb = cb;
 	this.value = this.get(); //add self to dep
 }
-
 Watcher.prototype = {
 	update: function() {
 		this.run();
@@ -90,6 +86,7 @@ Watcher.prototype = {
 	}
 }
 
+// VM
 function MyVue(option) {
 	var self = this;
 	this.data = option.data;

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css"></style>
+</head>
+<body>
+	<div id="app">
+		<h1>Hello {{msg}} </h1>
+		<!-- 双向绑定 -->
+		<h2> 计数器 {{num}} </h2>
+
+		<input v-model="num"/>
+		
+		<!-- 绑定点击事件到方法 -->
+		<button v-on:click="addNum">Add</button>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script type="text/javascript">
+	var a = new Vue({
+		el: '#app',
+		data: { 
+			msg: ' Vue!',
+			num: 5
+		},
+		//方法
+		methods: {
+			addNum: function() {
+				this.num ++;
+				console.log(this);
+			}
+		},
+
+		//生命周期
+		created: function() {
+			this.num = 100;
+		}
+	});
+</script>
+</html>
