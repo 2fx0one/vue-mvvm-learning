@@ -25,15 +25,15 @@ Observer.prototype = {
 			enumerable: true,
 			configurable: false,
 			get: function() {
-				console.log('value get = ', val);
-        if (Dep.target) {
-          dep.addSub(Dep.target);
-        }
+				console.log('get = ', val);
+		        if (Dep.target) {
+		          dep.addSub(Dep.target);
+		        }
 				return val;
 			},
 			set: function(newVal) {
 				if (val === newVal) return;
-				console.log('value change to new = ', newVal);
+				console.log('set = ', newVal);
 				val = newVal;
 				dep.notify();
 			}
