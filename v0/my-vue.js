@@ -95,12 +95,12 @@ function MyVue(option) {
 		self.proxyKeys(key);
 	})
 
-  var el = document.querySelector(option.el);
+  	var el = document.querySelector(option.el);
 
-  el.innerHTML = this.data[option.exp]; //初始化模板数据
+  	el.innerHTML = this.data[option.exp]; //初始化模板数据
 
-  //监听数据
-  observe(this.data);
+  	//监听数据
+  	observe(this.data);
 
 	new Watcher(this, option.exp, function(value){
 		el.innerHTML = value;

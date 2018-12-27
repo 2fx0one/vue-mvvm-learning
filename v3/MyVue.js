@@ -3,7 +3,7 @@ function MyVue(option) {
   this.vm = this;
   this.data = option.data;
 
-  Object.keys(option.data).forEach(function(key){
+  Object.keys(this.data).forEach(function(key){
     self.proxyKeys(key);
   })
 
