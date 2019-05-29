@@ -51,7 +51,7 @@ Compile.prototype = {
     var self = this;
     var nodeAttrs = node.attributes;
     Array.prototype.forEach.call(nodeAttrs, function(attr) {
-      var attrName = attr.name;
+      var attrName = attr.name; //v-model
       if (attrName.indexOf('v-') == 0) { //v-model
         var exp = attr.value;
         var dir = attrName.substring(2); //model
