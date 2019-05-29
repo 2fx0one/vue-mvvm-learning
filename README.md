@@ -1,4 +1,4 @@
-![vue-mvvm] (https://github.com/2fx0one/vue-mvvm-learning/blob/master/vue-mvvm.png "vue-mvvm")
+![vue-mvvm](https://github.com/2fx0one/vue-mvvm-learning/blob/master/vue-mvvm.png "vue-mvvm")
 
 # vue-mvvm-learning
 学习vue mvvm框架
