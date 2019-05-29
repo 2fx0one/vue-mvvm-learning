@@ -1,6 +1,8 @@
-![vue-mvvm](https://github.com/2fx0one/vue-mvvm-learning/blob/master/vue-mvvm.png"vue-mvvm")
+# vue 双向绑定原理
+![vue-mvvm](https://github.com/2fx0one/vue-mvvm-learning/blob/master/vue-mvvm.png "vue 双向绑定原理")
 
-![vue-mvvm](https://github.com/2fx0one/vue-mvvm-learning/blob/master/vue-compile.png"vue-mvvm")
+# vue 解析器
+![vue-mvvm](https://github.com/2fx0one/vue-mvvm-learning/blob/master/vue-compile.png "vue 解析器")
 
 # vue-mvvm-learning
 学习vue mvvm框架
