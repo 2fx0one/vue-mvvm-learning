@@ -1,5 +1,5 @@
 function observe(data) {
-  if (!data || typeof data !== 'object' ) {
+  if (!data || typeof data !== 'object') {
     return;
   }
   return new Observer(data);
@@ -11,27 +11,27 @@ function Observer(data) {
 }
 
 Observer.prototype = {
-  walk: function(data) {
+  walk: function (data) {
     var self = this;
-    Object.keys(data).forEach(function(key){
+    Object.keys(data).forEach(function (key) {
       self.defineReactive(data, key, data[key]);
     })
   },
 
-  defineReactive:function (data, key, val) {
+  defineReactive: function (data, key, val) {
     var dep = new Dep();
     observe(val); //监听子属性
     Object.defineProperty(data, key, {
       enumerable: true,
       configurable: false,
-      get: function() {
+      get: function () {
         if (Dep.target) {
           console.log('劫持[GET]方法 ', val);
           dep.addSub(Dep.target); //watcher
         }
         return val;
       },
-      set: function(newVal) {
+      set: function (newVal) {
         if (val === newVal) return;
         console.log('劫持[SET]方法', newVal);
         val = newVal;
@@ -45,13 +45,14 @@ Observer.prototype = {
 function Dep() {
   this.subs = [];
 }
+
 Dep.prototype = {
-  addSub: function(sub) {
+  addSub: function (sub) {
     this.subs.push(sub);
   },
-  notify: function() {
+  notify: function () {
     // console.log(this.subs);
-    this.subs.forEach(function(sub){
+    this.subs.forEach(function (sub) {
       sub.update();
     });
   }

@@ -6,7 +6,7 @@ function Compile(el, vm) {
 }
 
 Compile.prototype = {
-  init: function() {
+  init: function () {
     if (this.el) {
       this.fragment = this.nodeToFragment(this.el);
       this.compileElement(this.fragment);
@@ -16,26 +16,26 @@ Compile.prototype = {
       console.log('Dom 节点 not find!');
     }
   },
-  nodeToFragment: function(el) {
+  nodeToFragment: function (el) {
     var fragment = document.createDocumentFragment();
     var child = el.firstChild;
-    while(child) {
+    while (child) {
       //Dom放入 fragment 中
       fragment.appendChild(child)
       child = el.firstChild;
     }
     return fragment;
   },
-  compileElement: function(el) {
+  compileElement: function (el) {
     var childNodes = el.childNodes;
     var self = this;
     [].slice.call(childNodes).forEach(function (node) {
       var reg = /\{\{(.*)\}\}/;
       var text = node.textContent;
 
-     if (self.isTextNode(node) && reg.test(text)) { //文本
+      if (self.isTextNode(node) && reg.test(text)) { //文本
         self.compileText(node, reg.exec(text)[1]); //(node, 'data属性名')
-      } 
+      }
       //包含子节点，递归
       if (node.childNodes && node.childNodes.length) {
         self.compileElement(node); //递归
@@ -47,17 +47,17 @@ Compile.prototype = {
     var self = this;
     var initText = this.vm[exp];
     this.updateText(node, initText); // 初始化数据到视图。
-    new Watcher(this.vm, exp, function(val) { //在这里监听
-      self.updateText(node,val);
+    new Watcher(this.vm, exp, function (val) { //在这里监听
+      self.updateText(node, val);
     });
   },
 
-  updateText: function(node, val) {
+  updateText: function (node, val) {
     node.textContent = typeof val === 'undefined' ? '' : val;
   },
 
 
-  isTextNode: function(node) {
+  isTextNode: function (node) {
     return node.nodeType === 3;
   }
 

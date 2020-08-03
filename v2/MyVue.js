@@ -3,10 +3,9 @@ function MyVue(option) {
   this.vm = this;
   this.data = option.data;
 
-  Object.keys(this.data).forEach(function(key){
+  Object.keys(this.data).forEach(function (key) {
     self.proxyKeys(key);
   })
-
 
 
   //监听数据
@@ -22,8 +21,9 @@ function MyVue(option) {
   // });
   return this;
 }
+
 MyVue.prototype = {
-  proxyKeys: function(key) {
+  proxyKeys: function (key) {
     var self = this;
     Object.defineProperty(this, key, {
       enumrable: false,

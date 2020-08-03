@@ -7,10 +7,10 @@ function Watcher(vm, exp, cb) {
 }
 
 Watcher.prototype = {
-  update: function() {
+  update: function () {
     this.run();
   },
-  run: function() {
+  run: function () {
     var value = this.vm.data[this.exp]; //会触发获取
     var oldVal = this.value;
     if (oldVal !== value) {
@@ -18,7 +18,7 @@ Watcher.prototype = {
       this.cb.call(this.vm, value, oldVal);
     }
   },
-  get:function() {
+  get: function () {
     Dep.target = this; //缓存自己
     var value = this.vm.data[this.exp]; //执行监听器get函数
     Dep.target = null;

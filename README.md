@@ -5,7 +5,7 @@
 ![vue-mvvm](https://github.com/2fx0one/vue-mvvm-learning/blob/master/vue-compile.png "vue 解析器")
 
 # vue-mvvm-learning
-学习vue mvvm框架
+学习vue mvvm框架, 尽量不使用es6语法。不小心用了，请不要介意。 0.0
 
 ## v0版本 单个js文件 和一些测试文件
 简单的双向绑定。固定节点替换数据， 没有解析器解析dom节点。
